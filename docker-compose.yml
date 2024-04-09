@@ -97,7 +97,15 @@ services:
       - "8080:8080"
     environment:
       KAFKA_CONNECT_URIS: http://debezium:8083
-
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 8080:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+    volumes:
+      - ~/kui/config.yml:/etc/kafkaui/dynamic_config.yaml
   postgres:
     platform: linux/amd64
     image: postgres:latest
